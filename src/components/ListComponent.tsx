@@ -7,9 +7,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
 
-const List_Users = (props: any) => {
+const ListComponent = (props: any) => {
   const [usuarios, setUsuarios] = useState([{id: "", name: ""}]);
   const [carregando, setCarregando] = useState(true);
   
@@ -23,18 +23,15 @@ const List_Users = (props: any) => {
     })
   
   return (
-    <Grid container direction="row" justifyContent="center" alignItems="flex-start">
-      
+    <Grid container direction="column" wrap="nowrap">
+    <Grid item xs> 
+    <Typography noWrap variant="h5"> Lista de usuários </Typography>
+    </Grid>
       { carregando ? <h3> <CircularProgress/> </h3> : null }
       { carregando ?  null : 
       
       <Grid item xs={2}>
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Lista de Usuários
-          </ListSubheader>
-        }
       >
           { 
             usuarios.map(user => 
@@ -50,11 +47,7 @@ const List_Users = (props: any) => {
       </Grid>
       }
     </Grid>
-
-    
-
-    
   )
 }
 
-export default List_Users
+export default ListComponent

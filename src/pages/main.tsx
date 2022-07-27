@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import List from './List'
+import ListComponent from '../components/ListComponent'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <List />
+    <ListComponent />
   </React.StrictMode>
 )
