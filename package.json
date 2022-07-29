@@ -14,7 +14,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.2",
     "@mui/styled-engine-sc": "^5.8.0",
-    "icons-material": "link:@mui/icons-material",
+    "icons-material": "@mui/icons-material",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.5"

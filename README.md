@@ -7,7 +7,7 @@ Utilizando: React com typescript e components do Material Design (MUI). A API ut
 ## Como executar:
 1. Clonar o repositório em [ mariana-raquel /
 lista-de-usuarios
-](https://github.com/mariana-raquel/lista-de-usuarios)
+](https://github.com/mariana-raquel/lista-de-usuarios) ```git clone https://github.com/mariana-raquel/lista-de-usuarios.git```
 2. Ir para o repositório: ```cd lista-de-usuarios```
 3. Instalar os pacotes: ```pnpm i```
 3. E finalmente rodar a aplicação: ```pnpm run dev```

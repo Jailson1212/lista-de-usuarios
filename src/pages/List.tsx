@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRouter, useState, useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
@@ -21,7 +21,7 @@ const ListComponent = (props: any) => {
         setCarregando(false);
        });
     })
-  
+  const router = new Router();
   return (
     <Grid container direction="column" wrap="nowrap">
     <Grid item xs> 
@@ -39,7 +39,7 @@ const ListComponent = (props: any) => {
                 <ListItemIcon>
                   <PersonIcon />
                 </ListItemIcon>
-                <ListItemText key={user.id} primary={user.name} />
+                <a href="/tarefas"><ListItemText key={user.id} primary={user.name} /></a>
               </ListItemButton>
             )
           }
