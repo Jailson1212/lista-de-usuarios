@@ -7,29 +7,32 @@ const ListTarefasComponent = (props: any) => {
     const [usuario, setUsuario] = useState({ id: "", name: "" });
     const [tarefas, setTarefas] = useState([{ id: "", title: "" }]);
     const [carregando, setCarregando] = useState(true);
+    let id_user :string;
+    tarefas.map((t:any) => id_user = t.userId);
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/users/${props.id}/todos`)
-          .then(resposta => resposta.json())
+          .then(resposta => 
+              resposta.json())
           .then(tarefa => {
             setTarefas(tarefa);
             setCarregando(false);
-            fetch(`https://jsonplaceholder.typicode.com/users/${tarefa.userId}`)
-                .then(resposta => resposta.json())
-                .then(usuario => {
-                    setUsuario(usuario);
-                });
             
-          });
-      })
+        });
+    })
 
-     
-        
+    useEffect(() => {
+        fetch(`https://jsonplaceholder.typicode.com/users/${id_user}`)
+        .then(resp => resp.json())
+        .then(usuario => {
+            setUsuario(usuario);
+        })
+    })
+      
     return (
         <Container>
-            <NavBar title="Lista de Tarefas" />
-            {props.id}
-            {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <NavBar title="Lista de Tarefas" tela={props.tela}/>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 {usuario.name}
             </Typography>
             {carregando ? <CircularProgress />  : null}
@@ -48,7 +51,7 @@ const ListTarefasComponent = (props: any) => {
                         )
                     }
                     </List>
-            } */}
+            }
         </Container>
     )
 }

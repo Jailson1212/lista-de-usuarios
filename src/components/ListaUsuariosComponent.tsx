@@ -1,13 +1,7 @@
-import CircularProgress from '@mui/material/CircularProgress';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ArticleIcon from '@mui/icons-material/Article';
-import ListAltIcon from '@mui/icons-material/ListAlt';
+import { useEffect, useState } from "react";
+import { CircularProgress, Container, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { ListAlt, Article } from '@mui/icons-material';
 import NavBar from '../components/NavBarComponent';
-import { useEffect, useState } from 'react';
-import { Container } from '@mui/material';
 
 const ListUsuariosComponent = (props: any) => {
   const [usuarios, setUsuarios] = useState([{ id: "", name: "" }]);
@@ -24,7 +18,7 @@ const ListUsuariosComponent = (props: any) => {
 
   return (
     <Container>
-    <NavBar title="Lista de usuários"/>
+    <NavBar title="Lista de usuários" tela={props.tela}/>
       {carregando ? <h3> <CircularProgress /> </h3> : null}
       {carregando ? null :
         <List>
@@ -33,8 +27,8 @@ const ListUsuariosComponent = (props: any) => {
                 <ListItemButton>
                   <ListItemText key={user.id} primary={user.name} />
                   <ListItemIcon>
-                    <ListAltIcon onClick={() => { props.mudarTela(1); props.id(user.id)}}/>
-                    <ArticleIcon onClick={() => props.mudarTela(2)} id={user.id}/>
+                    <ListAlt onClick={() => { props.mudarTela(1); props.id(user.id)}}/>
+                    <Article onClick={() => { props.mudarTela(2); props.id(user.id)}}/>
                   </ListItemIcon>
                 </ListItemButton>
               )
