@@ -1,17 +1,13 @@
-import { Checkbox, CircularProgress, Container, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Checkbox, CircularProgress, Container, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import NavBar from "./NavBarComponent";
 
 
-const ListTarefasComponent = (props: any) => {
-    const [usuario, setUsuario] = useState({ id: "", name: "" });
+const PaginaListaTarefas = (props: any) => {
     const [tarefas, setTarefas] = useState([{ id: "", title: "" }]);
     const [carregando, setCarregando] = useState(true);
-    let id_user :string;
-    tarefas.map((t:any) => id_user = t.userId);
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${props.id}/todos`)
+        fetch(`https://jsonplaceholder.typicode.com/users/${props.usuario_tarefa.id}/todos`)
           .then(resposta => 
               resposta.json())
           .then(tarefa => {
@@ -19,21 +15,12 @@ const ListTarefasComponent = (props: any) => {
             setCarregando(false);
             
         });
-    })
+    },[props.usuario_tarefa.id]) ;
 
-    useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${id_user}`)
-        .then(resp => resp.json())
-        .then(usuario => {
-            setUsuario(usuario);
-        })
-    })
-      
     return (
         <Container>
-            <NavBar title="Lista de Tarefas" tela={props.tela}/>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                {usuario.name}
+                {props.usuario_tarefa.name}
             </Typography>
             {carregando ? <CircularProgress />  : null}
             {carregando ? null :
@@ -56,4 +43,4 @@ const ListTarefasComponent = (props: any) => {
     )
 }
 
-export default ListTarefasComponent;
+export default PaginaListaTarefas;
