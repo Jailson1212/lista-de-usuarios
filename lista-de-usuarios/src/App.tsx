@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { ListItem, ListItemText, ListSubheader } from "@mui/material";
+import { Container, ListItem, ListItemText, ListSubheader } from "@mui/material";
 import List from '@mui/material/List';
+import AppBar from "./components/AppBar";
 
 const App = (props: any) => {
 	const [users, setUsers] = useState([
@@ -16,6 +17,8 @@ const App = (props: any) => {
 			.then((json) => {setUsers(json); setLoading(false)});
 	});
 	return (
+    <Container sx={{maxWidth: 400}}>
+    <AppBar/>
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       component="nav"
@@ -31,6 +34,7 @@ const App = (props: any) => {
       }
     
     </List>
+    </Container>
 	);
 };
 
