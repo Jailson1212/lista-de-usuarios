@@ -1,13 +1,17 @@
 import { Checkbox, CircularProgress, Container, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import NavBarComponent from "../components/NavBarComponent";
 
 
 const PaginaListaTarefas = (props: any) => {
+
+    const params = useParams();
     const [tarefas, setTarefas] = useState([{ id: "", title: "" }]);
     const [carregando, setCarregando] = useState(true);
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${props.usuario_tarefa.id}/todos`)
+        fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/todos`)
           .then(resposta => 
               resposta.json())
           .then(tarefa => {
@@ -15,12 +19,13 @@ const PaginaListaTarefas = (props: any) => {
             setCarregando(false);
             
         });
-    },[props.usuario_tarefa.id]) ;
+    },[params.id]) ;
 
     return (
         <Container>
+            <NavBarComponent title="Lista de Tarefas" voltar="true" />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                {props.usuario_tarefa.name}
+                {params.name}
             </Typography>
             {carregando ? <CircularProgress />  : null}
             {carregando ? null :

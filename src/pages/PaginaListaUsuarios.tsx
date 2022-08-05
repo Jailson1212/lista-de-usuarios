@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { CircularProgress, Container, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { CircularProgress, Container, Link, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { ListAlt, Article } from '@mui/icons-material';
+import NavBarComponent from "../components/NavBarComponent";
 
 const PaginaListaUsuarios = (props: any) => {
   const [usuarios, setUsuarios] = useState([{ id: "", name: "" }]);
@@ -17,6 +18,7 @@ const PaginaListaUsuarios = (props: any) => {
 
   return (
     <Container>
+      <NavBarComponent title="Lista de Usuários" />
       {carregando ? <h3> <CircularProgress /> </h3> : null}
       {carregando ? null :
         <List>
@@ -25,8 +27,8 @@ const PaginaListaUsuarios = (props: any) => {
               <ListItemButton>
                 <ListItemText key={user.id} primary={user.name} />
                 <ListItemIcon>
-                  <ListAlt onClick={() => { props.mudarTela(1); props.mudarUsuario(user) }} />
-                  <Article onClick={() => { props.mudarTela(2); props.mudarUsuario(user) }} />
+                  <Link href={`/tarefas/${user.id}/${user.name}`} color="inherit"> <ListAlt/> </Link>
+                  <Link href={`/posts/${user.id}/${user.name}`} color="inherit"> <Article/> </Link>
                 </ListItemIcon>
               </ListItemButton>
             )
