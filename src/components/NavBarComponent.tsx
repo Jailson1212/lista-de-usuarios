@@ -14,6 +14,7 @@ const NavBarComponent = (props: any) => {
           </Typography>
           { props.voltar ? <Link color="inherit" underline='none' href="/"> Voltar </Link> : null }
           { props.voltar_posts ? <Link color="inherit" underline='none' href={`/posts/${props.id}/${props.username}` }> Voltar </Link> : null}
+          { props.login == false ? <Link color="inherit" underline='none' href={`/`}> Logout </Link> : ''}
         </Toolbar>
       </AppBar>
     </Box>
