@@ -12,9 +12,9 @@ const NavBarComponent = (props: any) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {props.title}
           </Typography>
-          { props.voltar ? <Link color="inherit" underline='none' href="/"> Voltar </Link> : null }
+          { props.voltar ? <Link color="inherit" underline='none' href={`/usuarios/${(Math.random()*10000).toFixed().toString().substring(0, 4)}`}> Voltar </Link> : null }
           { props.voltar_posts ? <Link color="inherit" underline='none' href={`/posts/${props.id}/${props.username}` }> Voltar </Link> : null}
-          { props.login == false ? <Link color="inherit" underline='none' href={`/`}> Logout </Link> : ''}
+          { (props.login != '' && props.login) != null ? <Link color="inherit" underline='none' href={`/`}> Logout </Link> : ''}
         </Toolbar>
       </AppBar>
     </Box>

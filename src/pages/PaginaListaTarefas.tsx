@@ -12,14 +12,14 @@ const PaginaListaTarefas = (props: any) => {
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/todos`)
-          .then(resposta => 
-              resposta.json())
-          .then(tarefa => {
-            setTarefas(tarefa);
-            setCarregando(false);
-            
-        });
-    },[params.id]) ;
+            .then(resposta =>
+                resposta.json())
+            .then(tarefa => {
+                setTarefas(tarefa);
+                setCarregando(false);
+
+            });
+    }, [params.id]);
 
     return (
         <Container>
@@ -27,22 +27,22 @@ const PaginaListaTarefas = (props: any) => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 {params.name}
             </Typography>
-            {carregando ? <CircularProgress />  : null}
+            {carregando ? <CircularProgress /> : null}
             {carregando ? null :
                 <List>
                     {
-                        tarefas.map((tarefa : any) => 
+                        tarefas.map((tarefa: any) =>
                             <ListItem key={tarefa.id} disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <Checkbox edge="start" checked={tarefa.completed} tabIndex={-1} disableRipple/>
+                                        <Checkbox edge="start" checked={tarefa.completed} tabIndex={-1} disableRipple />
                                     </ListItemIcon>
                                     <ListItemText primary={tarefa.title} />
                                 </ListItemButton>
                             </ListItem>
                         )
                     }
-                    </List>
+                </List>
             }
         </Container>
     )
