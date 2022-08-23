@@ -7,7 +7,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-export default function ButtonAppBar() {
+const AppNavBar = (props : any) => {
+  let voltar = false
+  if(props.tela == 1 || props.tela == 2){
+    voltar = true;
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -24,9 +29,12 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Lista de usuarios
           </Typography>
+          {voltar ? <Button color="inherit" onClick={() => props.mudarTela(0)}> Voltar </Button> : null}
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
+
+export default AppNavBar
