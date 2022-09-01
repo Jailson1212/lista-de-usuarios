@@ -9,6 +9,7 @@ import Post from "./Post";
 import {Route, Routes} from 'react-router-dom';
 
 const App = (props: any) => {
+	
 	return(
 		<Container>
 			<Routes>

@@ -1,14 +1,20 @@
 import { Container, Typography, List, ListItem, ListItemButton, ListItemIcon, Checkbox, ListItemText } from '@mui/material';
 import {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
 const Todos = (props: any) => {
-    const [tarefas, setTarefas] = useState([]);
+	const params = useParams();
+    const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/todos`)
-            .then(response => response.json())
-            .then(json => setTarefas(json))
-    });
+		fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/todos`)
+			.then(resposta =>
+				resposta.json())
+			.then(todos => {
+				setTodos(todos);
+	
+			});
+	}, [params.id]);
     
     
     
@@ -24,7 +30,7 @@ const Todos = (props: any) => {
 				Lista de tarefas
 			</Typography>
 			<List>
-				{tarefas.map((value) => {
+				{todos.map((value : any) => {
 					const labelId = `checkbox-list-label-${value.id}`;
 
 					return (
@@ -53,3 +59,5 @@ const Todos = (props: any) => {
 		</Container>
 	);
 };
+
+export default Todos;
