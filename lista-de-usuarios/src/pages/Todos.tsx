@@ -1,10 +1,11 @@
 import { Container, Typography, List, ListItem, ListItemButton, ListItemIcon, Checkbox, ListItemText } from '@mui/material';
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import AppNavBar from '../components/AppBar';
 
 const Todos = (props: any) => {
 	const params = useParams();
-    const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState([{id : "", title : ""}]);
 
     useEffect(() => {
 		fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/todos`)
@@ -15,19 +16,14 @@ const Todos = (props: any) => {
 	
 			});
 	}, [params.id]);
-    
-    
-    
-    
-    
-    
+
+
     return (
 		<Container>
+			<AppNavBar title = "Lista de Tarefas"/>
+			<br></br>
 			<Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-				{props.user.name}
-			</Typography>
-			<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-				Lista de tarefas
+				{params.name}
 			</Typography>
 			<List>
 				{todos.map((value : any) => {
@@ -37,15 +33,7 @@ const Todos = (props: any) => {
 						<ListItem key={value.id} disablePadding>
 							<ListItemButton role={undefined} dense>
 								<ListItemIcon>
-									<Checkbox
-										edge="start"
-										checked={value.completed}
-										tabIndex={-1}
-										disableRipple
-										inputProps={{
-											"aria-labelledby": labelId,
-										}}
-									/>
+									<Checkbox edge="start" checked={value.completed} tabIndex={-1} disableRipple inputProps={{ "aria-labelledby": labelId}}/>
 								</ListItemIcon>
 								<ListItemText
 									id={labelId}

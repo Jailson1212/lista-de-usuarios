@@ -2,13 +2,14 @@ import { AppBar, Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListIte
 import { Box, Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import AppNavBar from "../components/AppBar";
 
 const Comments = (props: any) => {
   const params = useParams();
     const [comment, setComments] = useState([{id : "", name : ""}]);
 
 useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/todos`)
+    fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/comments?postId=${params.postId}`)
         .then(resposta =>
             resposta.json())
         .then(comment => {
@@ -21,7 +22,7 @@ useEffect(() => {
 return( 
 
     <Container>
-        <AppBar title='Todos'></AppBar>
+        <AppNavBar title='Comentários'/>
         <Box sx={{ color: 'green', marginBottom: 1, padding: 1 }}>
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
           {params.name}

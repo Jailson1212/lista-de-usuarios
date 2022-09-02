@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from '@mui/material';
 
 const AppNavBar = (props : any) => {
   let voltar = false
@@ -27,10 +28,9 @@ const AppNavBar = (props : any) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Lista de usuarios
+            {props.title}
           </Typography>
-          {voltar ? <Button color="inherit" onClick={() => props.mudarTela(0)}> Voltar </Button> : null}
-          <Button color="inherit">Login</Button>
+
         </Toolbar>
       </AppBar>
     </Box>

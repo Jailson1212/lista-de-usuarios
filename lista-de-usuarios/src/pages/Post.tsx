@@ -3,6 +3,7 @@ import { Box, Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentIcon from '@mui/icons-material/Comment';
+import AppNavBar from "../components/AppBar";
 
 const Post = (props: any) => {
     const params = useParams();
@@ -10,23 +11,22 @@ const Post = (props: any) => {
 
 
     useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/todos`)
+    fetch(`https://jsonplaceholder.typicode.com/users/${params.id}/posts`)
         .then(resposta =>
             resposta.json())
         .then(post => {
             setPosts(post);
-
         });
 }, [params.id]);
 
 return(
     <Container>
-        <AppBar title='Todos'></AppBar>
-        <Box sx={{ color: 'green', marginBottom: 1, padding: 1 }}>
-        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-          {params.name}
-        </Typography>
-      </Box>
+        <AppNavBar title='Postagens'/>
+        <Box sx={{ color: 'solidblack', marginBottom: 1, padding: 1 }}>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            {params.name}
+          </Typography>
+        </Box>
         <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }} letterSpacing={2}>
           {
             posts.map((post: any) =>
